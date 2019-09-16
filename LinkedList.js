@@ -36,7 +36,7 @@ LinkedList.prototype.removeTail = function() {
   if (!this.tail) return null;
   var val = this.tail.value;
   this.tail = this.tail.prev;
-  if (this.tail) this.tail.prev = null;
+  if (this.tail) this.tail.next = null;
   else this.head = null;
   return val;
 };
@@ -47,13 +47,14 @@ LinkedList.prototype.search = function(searchValue) {
     if (currentNode.value === searchValue) return currentNode.value;
     currentNode = currentNode.next;
   }
-  return "Search doesn't exist";
+  return null;
 };
 
 LinkedList.prototype.indexOf = function(value) {
   var indexes = [];
-  var currentNode = this.head;
   var currentIndex = 0;
+  var currentNode = this.head;
+
   while (currentNode) {
     if (currentNode.value === value) {
       indexes.push(currentIndex);
